@@ -6,11 +6,11 @@ After=docker.service docker.socket
 
 [Service]
 EnvironmentFile=-/etc/weave.env
-ExecStartPre={{ bin_dir }}/weave launch-router \
+ExecStartPre={{ bin_dir }}/weave --no-restart launch-router \
             $WEAVE_SUBNET \
             $WEAVE_PEERS
 ExecStart=/usr/bin/docker attach weave
-ExecStop={{ bin_dir }}/weave stop-router
+ExecStop={{ bin_dir }}/weave stop
 
 [Install]
 WantedBy=multi-user.target
